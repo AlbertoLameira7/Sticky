@@ -6,4 +6,4 @@
 
 ![](Gif/Sticky_Jump.gif)
 
-<p>The direction of the jump is controlled by mouse position, pressing the left mouse click charges the jump, releasing the left mouse click makes the slimp jump</p>
+<p>The direction of the jump is controlled by mouse position, pressing the left mouse click charges the jump, releasing the left mouse click makes the slime jump</p>
