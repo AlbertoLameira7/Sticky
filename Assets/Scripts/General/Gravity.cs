@@ -50,7 +50,6 @@ namespace NS_Gravity
             if (other.collider.tag == "Ground" && _isGravityActive)
             {
                 _isGrounded = true;
-                Debug.Log("hit floor");
             }
         }
 

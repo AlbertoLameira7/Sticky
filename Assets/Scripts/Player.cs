@@ -98,6 +98,11 @@ namespace NS_Player
             _arrow.transform.rotation = Quaternion.Euler(0, 0, _angle);
         }
 
+        void Death()
+        {
+            NS_PlayerManager.PlayerManager.KillCurrentPlayer(gameObject);
+        }
+
         void OnCollisionEnter2D(Collision2D other)
         {
             if (other.collider.tag == "Sticky" || other.collider.tag == "Ground")
@@ -108,11 +113,16 @@ namespace NS_Player
                 _gravity.Deactivate();
                 _rb.velocity = new Vector2(0, 0);
             }
+
+            if (other.collider.tag == "Spike")
+            {
+                Death();
+            }
         }
 
         void OnCollisionExit2D(Collision2D other)
         {
-            if (other.collider.tag == "Ground")
+            if (other.collider.tag == "Sticky" || other.collider.tag == "Ground")
             {
                 _isReadyToJump = false;
             }

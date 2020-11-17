@@ -11,7 +11,7 @@ namespace NS_UIManager
         private GameObject _powerBarFill;
         private Image _powerBarFillImage;
         static private bool _readPower = false;
-        private NS_Player.Player _player;
+        private NS_Player.Player _currentPlayer;
 
         // Start is called before the first frame update
         void Start()
@@ -26,14 +26,17 @@ namespace NS_UIManager
 
             _powerBarFillImage = _powerBarFill.GetComponent<Image>();
 
-            _player = GameObject.Find("Player").GetComponent<NS_Player.Player>();
-
             if (_canvas == null)
             {
                 Debug.Log("No Canvas in UI!");
             }
+        }
 
-            if (_player == null)
+        public void SetCurrentPlayer(GameObject player)
+        {
+            _currentPlayer = player.GetComponent<NS_Player.Player>();
+
+            if (_currentPlayer == null)
             {
                 Debug.Log("Player Not Found!");
             }
@@ -50,7 +53,7 @@ namespace NS_UIManager
 
         float ReadPowerFromPlayer()
         {
-            return _player.GetJumpPowerNormalized();
+            return _currentPlayer.GetJumpPowerNormalized();
         }
 
         static public void ActivatePowerBar()
