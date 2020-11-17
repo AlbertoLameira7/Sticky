@@ -7,3 +7,10 @@
 ![](Gif/Sticky_Jump.gif)
 
 <p>The direction of the jump is controlled by mouse position, pressing the left mouse click charges the jump, releasing the left mouse click makes the slime jump</p>
+
+<h2>Death and Respawn</h2>
+
+![](Gif/Death_Respawn.gif)
+
+<p>Whenever the player hits something that will kill the slime, the slime is respawned. The position of the respawn will be a "default respawn location" set in the inspector, or, if available the last valid player position</p>
+
