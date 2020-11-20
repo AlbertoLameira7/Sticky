@@ -1,35 +1,66 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+namespace NS_GameManager
 {
-    [SerializeField]
-    private GameObject _playerManager, _UIManager;
-    private NS_PlayerManager.PlayerManager _playerManagerComponent;
-    private NS_UIManager.UIManager _UIManagerComponent;
-
-    // Start is called before the first frame update
-    void Start()
+    public class GameManager : MonoBehaviour
     {
-        _playerManagerComponent = _playerManager.GetComponent<NS_PlayerManager.PlayerManager>();
-        _UIManagerComponent = _UIManager.GetComponent<NS_UIManager.UIManager>();
+        [SerializeField]
+        private GameObject _playerManager, _UIManager;
+        private NS_PlayerManager.PlayerManager _playerManagerComponent;
+        private NS_UIManager.UIManager _UIManagerComponent;
+        static private int _currentLevel;
 
-        SetupPlayer();
-    }
-
-    void SetupPlayer()
-    {
-        _playerManagerComponent.SpawnPlayer();
-        _UIManagerComponent.SetCurrentPlayer(_playerManagerComponent.GetCurrentPlayer());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (_playerManagerComponent.GetPlayerCount() <= 0)
+        // Start is called before the first frame update
+        void Start()
         {
+            _playerManagerComponent = _playerManager.GetComponent<NS_PlayerManager.PlayerManager>();
+            _UIManagerComponent = _UIManager.GetComponent<NS_UIManager.UIManager>();
+
             SetupPlayer();
+        }
+
+        void SetupPlayer()
+        {
+            _playerManagerComponent.SpawnPlayer();
+            _UIManagerComponent.SetCurrentPlayer(_playerManagerComponent.GetCurrentPlayer());
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (_playerManagerComponent.GetPlayerCount() <= 0)
+            {
+                SetupPlayer();
+            }
+        }
+
+        static public void currentLevelFinished()
+        {
+            // add scoring points to player and change scene to next level or end title
+            // TODO: add level select menu
+            if (_currentLevel < SceneManager.sceneCountInBuildSettings) // needs a better solution, no difference in "menu scene" and "level scene"
+            {
+                _currentLevel++;
+                LoadNextLevel();
+            }
+            else if (_currentLevel >= SceneManager.sceneCountInBuildSettings)
+            {
+                LoadEndGame();
+            }
+        }
+
+        static void LoadEndGame()
+        {
+            SceneManager.LoadScene("EndGame");
+        }
+
+        static void LoadNextLevel()
+        {
+            SceneManager.LoadScene(_currentLevel);
         }
     }
 }
+
