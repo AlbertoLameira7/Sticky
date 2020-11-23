@@ -12,7 +12,8 @@ namespace NS_PlayerManager
         static private int _playerCount;
         [SerializeField]
         private Vector2 _defaultPlayerRespawnPos;
-        private Vector2 _playerRespawnPos;
+        [SerializeField]
+        private GameObject _playerRespawnPos;
         private GameObject _currentPlayer;
 
         public int GetPlayerCount()
@@ -31,7 +32,7 @@ namespace NS_PlayerManager
 
             if (_playerRespawnPos != null)
             {
-                spawnLocation = _playerRespawnPos;
+                spawnLocation = _playerRespawnPos.transform.position;
             }
 
             _currentPlayer = Instantiate(_playerPrefab, spawnLocation, Quaternion.identity);
