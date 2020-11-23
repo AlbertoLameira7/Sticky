@@ -17,7 +17,7 @@
 <p>Whenever the player hits something that will kill the slime, the slime is respawned. The position of the respawn will be a "default respawn location" set in the inspector, or, if available the last valid player position</p>
 
 
-<h2>Death and Respawn</h2>
+<h2>Levels</h2>
 
 ![](Gif/level.gif)
 
