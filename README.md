@@ -21,4 +21,4 @@
 
 ![](Gif/level.gif)
 
-<p>Two simple levels, objective is to get to the blue portal to advance to next level. Red spots mark positions that can be "sticked" to</p>
+<p>Two simple levels, objective is to get to the blue portal to advance to next level. Red spots mark positions that can be "sticked" to. Also added a "Spawn Point" to specify where the player should spawn, if no spawnpoint is defined, default values are used instead.</p>
